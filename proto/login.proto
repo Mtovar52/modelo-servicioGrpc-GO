@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package login;
+
+option go_package = "GRPC-AUTH/ploto";
+
+service LoginService {
+    rpc login(Login) returns (LoginResponse){}
+}
+
+message Login {
+    int64  id = 1;
+    int64  user_id = 2;
+    int64  role_id = 3;
+    int64  contractor_warehouse_id = 4;
+}
+
+message LoginResponse{
+    string title = 1;
+    string message = 2;
+    bool is_ok = 3;
+    int32 status = 4;
+}

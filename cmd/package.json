@@ -1,0 +1,9 @@
+{
+    "apps" : [{
+      "name"        : "grpc-user",
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "key.json"
+      },
+      "script"      : "./cmd"
+    }]
+}

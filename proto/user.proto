@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package user;
+//import "google/protobuf/timestamp.proto";
+
+option go_package = "GRPC-AUTH/ploto";
+
+// Service to manage list of  user
+service UserService {
+    // Create new todo user
+    rpc CreateUser(User) returns (UserResponse){}
+
+    // Update user
+    rpc UpdateUser(UpdateRequestUser) returns (UserResponse){}
+
+    // Delete user
+    rpc DeleteUser(DeleteRequestUser) returns (UserResponse) {}
+    
+    // Read user
+    rpc ListUser(ListRequestUser) returns (ListAllResponse){}
+
+    // Read all user
+    rpc GetByIdUser(GetById) returns (UserLogin){}
+
+    // login user
+    rpc FindUserByEmailAndNick(FindVerifRequest) returns (UserLogin) {}
+    
+}
+
+
+message User {
+    int64  id = 1;
+    int64  type_document_id = 2;
+    string name = 3;
+    string num_document = 4;
+    string email = 5;
+    string phone_contact = 6;
+	string nick_name = 7;
+	int32  state = 8;
+    bool   conditions = 9; 
+    string password = 10;
+    string password2 = 11;
+    string creation_date = 12;
+    string update_date = 13;
+}
+
+
+message UserResponse{
+    string title = 1;
+    string message = 2;
+    bool is_ok = 3;
+    int32 status = 4;
+}
+
+message UserLogin{
+    int64  id = 1;
+    int64  type_document_id = 2;
+    string name = 3;
+    string num_document = 4;
+    string email = 5;
+    string phone_contact = 6;
+	string nick_name = 7;
+	int32  state = 8;
+    bool   conditions = 9; 
+    string password = 10;
+    string creation_date = 11;
+    string update_date = 12;
+}
+
+message PivotLogin {
+    int64  id = 1;
+    string name = 2;
+    string email = 3;
+    int64  user_id = 4;
+    int64  role_id = 5;
+    int64 contractor_warehouse_id = 6;
+    string password = 7;
+	int32  state = 8;
+}
+
+message UpdateRequestUser{
+    int64 id=1;
+    UserLogin user =2;
+}
+
+message DeleteRequestUser{
+    int64 id=1;
+}
+
+// list all USER and list USER by id 
+
+message ListRequestUser { 
+    int32 offset = 1; 
+}
+
+message GetById{
+    int64 id = 1;
+}
+
+message ListAllResponse{
+    repeated UserLogin listResponse=1;
+}
+
+// // //  LOGUIN REQUEST USER
+message FindVerifRequest{
+    string name = 1;
+    string email = 2;
+    string nick_name = 3;
+    string password = 4;
+}
